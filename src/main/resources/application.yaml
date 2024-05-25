@@ -2,9 +2,9 @@ spring:
   application:
     name: breast-cancer-prediction
   datasource:
-    url: jdbc:postgresql://db-postgresql-fra1-70206-do-user-13769189-0.c.db.ondigitalocean.com:25060/defaultdb
-    username: doadmin
-    password: AVNS_zijkeeAfeb4nvCFCc0b
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: postgres
+    password: admin
     driver-class-name: org.postgresql.Driver
   jpa:
     generate-ddl: true

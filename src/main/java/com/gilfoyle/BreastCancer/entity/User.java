@@ -1,6 +1,7 @@
 package com.gilfoyle.BreastCancer.entity;
 
 
+import com.gilfoyle.BreastCancer.Security.SecurityUser;
 import jakarta.persistence.*;
 import lombok.Data;
 import org.springframework.data.annotation.Id;
@@ -18,10 +19,14 @@ public class User {
     private String name;
     private String surname;
     private String email;
-    private String password;
     private String age;
+    private Long weight;
+    private Long height;
     private String generalAnlysisRegion;
 
     @OneToMany
     private List<Exercise> exercise;
+
+    @OneToOne
+    private SecurityUser securityUser;
 }

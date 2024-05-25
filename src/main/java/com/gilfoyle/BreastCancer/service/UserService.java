@@ -12,13 +12,16 @@ import org.springframework.stereotype.Service;
 public class UserService {
     private final UserRepository userRepository;
 
-
     public User getUser(Long id) {
         return userRepository.findById(id).orElse(null);
     }
 
     public User saveUser(UserRequestDto user) {
         return userRepository.save(UserMapper.mapToUser(user));
+    }
+
+    public User saveUser(User user) {
+        return userRepository.save(user);
     }
 
     public void deleteUser(Long id) {
@@ -29,12 +32,15 @@ public class UserService {
         User fUser= userRepository.findById(id).orElseThrow(() -> new RuntimeException("Exercise not found"));
         fUser.setAge(user.getAge());
         fUser.setEmail(user.getEmail());
-        fUser.setPassword(user.getPassword());
         fUser.setName(user.getName());
         fUser.setSurname(user.getSurname());
         fUser.setGeneralAnlysisRegion(user.getGeneralAnlysisRegion());
 
         return userRepository.save(fUser);
+    }
+
+    public User getBySecurityUserId(Long securityUserId) {
+        return userRepository.findBySecurityUserId(securityUserId);
     }
 
 }

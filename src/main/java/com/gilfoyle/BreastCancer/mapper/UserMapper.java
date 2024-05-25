@@ -10,7 +10,6 @@ public class UserMapper {
         User user = new User();
         user.setName(userRequestDto.getName());
         user.setSurname(userRequestDto.getSurname());
-        user.setPassword(userRequestDto.getPassword());
         user.setEmail(userRequestDto.getEmail());
         user.setGeneralAnlysisRegion(userRequestDto.getGeneralAnlysisRegion());
         return user;

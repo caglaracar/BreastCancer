@@ -10,5 +10,7 @@ public class UserRequestDto {
     private String email;
     private String generalAnlysisRegion;
     private String age;
+    private Long weight;
+    private Long height;
 
 }
