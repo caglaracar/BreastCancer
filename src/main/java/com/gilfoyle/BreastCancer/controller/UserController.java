@@ -9,26 +9,22 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/user")
-public class UserController {
+public class UserController extends GeneralController {
     private final UserService userService;
 
-    @GetMapping("/get/{id}")
-    public User getUser(@PathVariable Long id) {
-        return userService.getUser(id);
+    @GetMapping("/get")
+    public User getUserAllDetails() {
+        return userService.getUser(getUser().getId());
     }
 
-    @DeleteMapping("/delete/{id}")
-    public void deleteUser(@PathVariable Long id) {
-        userService.deleteUser(id);
+    @DeleteMapping("/delete")
+    public void deleteUser() {
+        userService.deleteUser(getUser());
     }
 
-    @PutMapping("/update/{id}")
-    public User updateUser(@RequestBody UserRequestDto user,@PathVariable Long id) {
-        return userService.updateUser(user, id);
+    @PutMapping("/update")
+    public User updateUser(@RequestBody UserRequestDto user) {
+        return userService.updateUser(user,getUser());
     }
 
-    @PostMapping("/save")
-    public User saveUser(@RequestBody UserRequestDto user) {
-        return userService.saveUser(user);
-    }
 }

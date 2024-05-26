@@ -22,13 +22,16 @@ public class ExerciseService {
         return exerciseRepository.findById(id).orElse(null);
     }
 
-    public List<Exercise> getUserExercise(SecurityUser securityUser) {
-        User user = userService.getBySecurityUserId(securityUser.getId());
+    public List<Exercise> getUserExercise(User user) {
+
         return user.getExercise();
     }
 
-    public Exercise saveExercise(ExerciseRequestDto exercise) {
-        return exerciseRepository.save(ExerciseMapper.mapToExercise(exercise));
+    public Exercise saveExercise(ExerciseRequestDto exercise, User user) {
+        Exercise newExercise = ExerciseMapper.mapToExercise(exercise);
+        newExercise.setUser(user);
+
+        return exerciseRepository.save(newExercise);
     }
 
     public void deleteExercise(Long id) {

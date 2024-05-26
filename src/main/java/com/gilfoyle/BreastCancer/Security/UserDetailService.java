@@ -6,6 +6,7 @@ import com.gilfoyle.BreastCancer.repository.UsersRepository;
 import com.gilfoyle.BreastCancer.service.UserService;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
@@ -14,8 +15,10 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.Collection;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -39,6 +42,10 @@ public class UserDetailService implements UserDetailsService {
         return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), getAuthorities(user));
     }
 
+    public SecurityUser findByUsername(String username) {
+        return securityUserRepository.findByUsername(username);
+    }
+
     private Collection<? extends GrantedAuthority> getAuthorities(SecurityUser user) {
         return user.getRoles().stream()
                 .map(SimpleGrantedAuthority::new)
@@ -47,13 +54,18 @@ public class UserDetailService implements UserDetailsService {
 
     @Transactional
     public void saveUser(SaveUserRequestDto saveUserRequestDto) {
+        // Kullanıcı adının zaten kullanılıp kullanılmadığını kontrol edin
+        SecurityUser existingUser = securityUserRepository.findByUsername(saveUserRequestDto.username());
+        if (existingUser!=null) {
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Username is already taken");
+        }
         SecurityUser securityUser = new SecurityUser();
         securityUser.setUsername(saveUserRequestDto.username());
-        securityUser.setPassword( passwordEncoder.encode(saveUserRequestDto.password()));
+        securityUser.setPassword(passwordEncoder.encode(saveUserRequestDto.password()));
 
         User user = createUser(saveUserRequestDto);
-
         user.setSecurityUser(securityUser);
+
         userService.saveUser(user);
         securityUserRepository.save(securityUser);
     }

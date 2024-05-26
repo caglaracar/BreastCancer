@@ -24,7 +24,7 @@ public class User {
     private Long height;
     private String generalAnlysisRegion;
 
-    @OneToMany
+    @OneToMany(mappedBy = "user")
     private List<Exercise> exercise;
 
     @OneToOne

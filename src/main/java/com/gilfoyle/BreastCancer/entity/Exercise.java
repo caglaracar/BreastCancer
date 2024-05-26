@@ -1,6 +1,7 @@
 package com.gilfoyle.BreastCancer.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Data;
 import org.springframework.data.annotation.Id;
@@ -17,9 +18,10 @@ public class Exercise {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @ManyToOne
+    @JsonBackReference
     private User user;
     private Date exerciseDate;
-        private boolean isDoneExercise;
+    private boolean isDoneExercise;
     private Date date;
     @OneToMany
     private List<Step> step;

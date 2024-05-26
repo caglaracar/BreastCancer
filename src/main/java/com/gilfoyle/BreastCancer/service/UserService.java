@@ -16,24 +16,22 @@ public class UserService {
         return userRepository.findById(id).orElse(null);
     }
 
-    public User saveUser(UserRequestDto user) {
-        return userRepository.save(UserMapper.mapToUser(user));
-    }
 
     public User saveUser(User user) {
         return userRepository.save(user);
     }
 
-    public void deleteUser(Long id) {
-        userRepository.deleteById(id);
+    public void deleteUser(User user) {
+        userRepository.delete(user);
     }
 
-    public User updateUser(UserRequestDto user, Long id) {
-        User fUser= userRepository.findById(id).orElseThrow(() -> new RuntimeException("Exercise not found"));
+    public User updateUser(UserRequestDto user, User fUser) {
         fUser.setAge(user.getAge());
         fUser.setEmail(user.getEmail());
         fUser.setName(user.getName());
         fUser.setSurname(user.getSurname());
+        fUser.setWeight(user.getWeight());
+        fUser.setHeight(user.getHeight());
         fUser.setGeneralAnlysisRegion(user.getGeneralAnlysisRegion());
 
         return userRepository.save(fUser);
