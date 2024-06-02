@@ -6,6 +6,7 @@ import com.gilfoyle.BreastCancer.entity.Exercise;
 import com.gilfoyle.BreastCancer.entity.User;
 import com.gilfoyle.BreastCancer.mapper.ExerciseMapper;
 import com.gilfoyle.BreastCancer.repository.ExerciseRepository;
+import com.gilfoyle.BreastCancer.util.SecurityUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -22,9 +23,8 @@ public class ExerciseService {
         return exerciseRepository.findById(id).orElse(null);
     }
 
-    public List<Exercise> getUserExercise(User user) {
-
-        return user.getExercise();
+    public List<Exercise> getUserExercise() {
+        return userService.getUser(SecurityUtil.getUserId()).getExercise();
     }
 
     public Exercise saveExercise(ExerciseRequestDto exercise, User user) {

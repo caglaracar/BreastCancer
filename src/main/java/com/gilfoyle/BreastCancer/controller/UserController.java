@@ -1,20 +1,28 @@
 package com.gilfoyle.BreastCancer.controller;
 
+import com.gilfoyle.BreastCancer.Security.LoginRequest;
+import com.gilfoyle.BreastCancer.dto.LoginResponse;
 import com.gilfoyle.BreastCancer.dto.UserRequestDto;
 import com.gilfoyle.BreastCancer.entity.User;
 import com.gilfoyle.BreastCancer.service.UserService;
+import com.gilfoyle.BreastCancer.util.SecurityUtil;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequiredArgsConstructor
+//@RequiredArgsConstructor
 @RequestMapping("/api/user")
 public class UserController extends GeneralController {
     private final UserService userService;
 
+    public UserController(UserService userService) {
+        this.userService = userService;
+    }
+
     @GetMapping("/get")
     public User getUserAllDetails() {
-        return userService.getUser(getUser().getId());
+        return userService.getUser(SecurityUtil.getUserId());
     }
 
     @DeleteMapping("/delete")
@@ -27,4 +35,8 @@ public class UserController extends GeneralController {
         return userService.updateUser(user,getUser());
     }
 
+    @PostMapping("/login")
+    public ResponseEntity<LoginResponse> login(@RequestBody LoginRequest loginRequest) {
+        return ResponseEntity.ok(userService.login(loginRequest));
+    }
 }

@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @AllArgsConstructor
 @RequestMapping("/auth")
-
 public class SecurityUserController {
     private final UserDetailService securityUserService;
     @PostMapping("/saveuser")

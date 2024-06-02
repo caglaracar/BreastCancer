@@ -10,15 +10,8 @@ public class ExerciseMapper {
         exercise.setExerciseName(exerciseRequestDto.getExerciseName());
         exercise.setExerciseDate(exerciseRequestDto.getExerciseDate());
         exercise.setDoneExercise(exerciseRequestDto.isDoneExercise());
+        exercise.setCalories(exerciseRequestDto.getCalories());
         return exercise;
     }
-
-//    public static ExerciseResponseDto mapToExerciseResponseDto(Exercise exercise) {
-//        ExerciseResponseDto exerciseResponseDto = new ExerciseResponseDto();
-//        exerciseResponseDto.setExerciseName(exercise.getExerciseName());
-//        exerciseResponseDto.setExerciseDate(exercise.getExerciseDate());
-//        exerciseResponseDto.setDone(exercise.isDone());
-//        return exerciseResponseDto;
-//    }
 
 }

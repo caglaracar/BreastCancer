@@ -26,6 +26,7 @@ public class Exercise {
     @OneToMany
     private List<Step> step;
     private String exerciseName;
+    private String calories;
 
 
 

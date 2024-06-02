@@ -13,12 +13,11 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.Collection;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -28,7 +27,7 @@ public class UserDetailService implements UserDetailsService {
     private UsersRepository securityUserRepository;
 
     @Autowired
-    private BCryptPasswordEncoder passwordEncoder;
+    private PasswordEncoder passwordEncoder;
 
     @Autowired
     private UserService userService;
@@ -54,7 +53,6 @@ public class UserDetailService implements UserDetailsService {
 
     @Transactional
     public void saveUser(SaveUserRequestDto saveUserRequestDto) {
-        // Kullanıcı adının zaten kullanılıp kullanılmadığını kontrol edin
         SecurityUser existingUser = securityUserRepository.findByUsername(saveUserRequestDto.username());
         if (existingUser!=null) {
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Username is already taken");
