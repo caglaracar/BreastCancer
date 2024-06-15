@@ -6,19 +6,23 @@ import com.gilfoyle.BreastCancer.dto.UserRequestDto;
 import com.gilfoyle.BreastCancer.entity.User;
 import com.gilfoyle.BreastCancer.service.UserService;
 import com.gilfoyle.BreastCancer.util.SecurityUtil;
-import lombok.RequiredArgsConstructor;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
-//@RequiredArgsConstructor
 @RequestMapping("/api/user")
+@CrossOrigin
+
 public class UserController extends GeneralController {
     private final UserService userService;
 
     public UserController(UserService userService) {
         this.userService = userService;
     }
+
 
     @GetMapping("/get")
     public User getUserAllDetails() {
@@ -39,4 +43,15 @@ public class UserController extends GeneralController {
     public ResponseEntity<LoginResponse> login(@RequestBody LoginRequest loginRequest) {
         return ResponseEntity.ok(userService.login(loginRequest));
     }
+
+    @GetMapping("/all")
+    public ResponseEntity<List<User>> getAllUsers() {
+        List<User> users = userService.getAllUsers();
+        return ResponseEntity.ok(users);
+    }
+
+
+
+
+
 }

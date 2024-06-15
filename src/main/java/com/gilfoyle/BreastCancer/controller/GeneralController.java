@@ -5,6 +5,9 @@ import com.gilfoyle.BreastCancer.entity.User;
 import com.gilfoyle.BreastCancer.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.web.bind.annotation.CrossOrigin;
+
+@CrossOrigin
 
 public class GeneralController {
     @Autowired

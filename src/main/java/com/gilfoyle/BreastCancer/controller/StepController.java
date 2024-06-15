@@ -12,6 +12,7 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/step")
+@CrossOrigin
 public class StepController {
     private final StepService stepService;
 

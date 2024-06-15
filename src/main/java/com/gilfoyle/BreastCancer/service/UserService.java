@@ -9,12 +9,13 @@ import com.gilfoyle.BreastCancer.model.UserContext;
 import com.gilfoyle.BreastCancer.repository.UserRepository;
 import com.gilfoyle.BreastCancer.util.SecurityUtil;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.crypto.password.NoOpPasswordEncoder;
+
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -29,7 +30,6 @@ public class UserService {
 
         return userRepository.findById(id).orElse(null);
     }
-
 
     public User saveUser(User user) {
         user.getSecurityUser().setPassword(user.getSecurityUser().getPassword());
@@ -86,4 +86,11 @@ public class UserService {
         return userRepository.findBySecurityUserId(securityUserId);
     }
 
+    public List<User> getAllUsers() {
+        return userRepository.findAll();
+    }
+
+
 }
+
+
