@@ -19,6 +19,8 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.servlet.DispatcherServlet;
 
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -51,7 +53,16 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityWebFilterChain(HttpSecurity http) throws Exception {
         http
-                .cors(AbstractHttpConfigurer::disable)
+                .cors(cors -> {
+                    UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+                    CorsConfiguration config = new CorsConfiguration();
+                    config.setAllowCredentials(true); // Eğer kimlik doğrulama bilgilerinin gönderilmesi gerekiyorsa true olarak bırakın
+                    config.addAllowedOriginPattern("*"); // Joker karakteri burada kullanabilirsiniz
+                    config.addAllowedHeader("*");
+                    config.addAllowedMethod("*");
+                    source.registerCorsConfiguration("/**", config);
+                    cors.configurationSource(source);
+                })
                 .csrf(AbstractHttpConfigurer::disable)
                 .logout(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(authorizationManagerRequestMatcherRegistry ->
@@ -61,12 +72,7 @@ public class SecurityConfig {
                 )
                 .authenticationProvider(authenticationProvider())
                 .addFilterBefore(jwtTokenFilter, UsernamePasswordAuthenticationFilter.class)
-                .sessionManagement(sesConfig -> sesConfig.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                //.exceptionHandling(exceptionHandlingConfigurer -> exceptionHandlingConfigurer
-                //        .accessDeniedHandler(new MyAccessDeniedHandler(endpointChecker()))
-                //        .authenticationEntryPoint(new MyAuthenticationEntryPoint(endpointChecker()))
-                //)
-        ;
+                .sessionManagement(sesConfig -> sesConfig.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
         return http.build();
     }
 

@@ -2,10 +2,14 @@ package com.gilfoyle.BreastCancer.controller;
 
 import com.gilfoyle.BreastCancer.dto.ExerciseRequestDto;
 import com.gilfoyle.BreastCancer.entity.Exercise;
+import com.gilfoyle.BreastCancer.entity.User;
 import com.gilfoyle.BreastCancer.service.ExerciseService;
 import com.gilfoyle.BreastCancer.service.UserService;
 import com.gilfoyle.BreastCancer.util.SecurityUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -26,7 +30,14 @@ public class ExerciseController{
     }
 
     @PostMapping("/save")
-    public Exercise saveExercise(@RequestBody ExerciseRequestDto exercise) {
-        return exerciseService.saveExercise(exercise, userService.getUser(SecurityUtil.getUserId()));
+    public ResponseEntity<?> saveExercise(@RequestBody ExerciseRequestDto exercise) {
+        try {
+            User user = userService.getUser(SecurityUtil.getUserId());
+            Exercise savedExercise = exerciseService.saveExercise(exercise, user);
+            return ResponseEntity.ok(savedExercise);
+        } catch (UsernameNotFoundException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+        }
     }
+
 }

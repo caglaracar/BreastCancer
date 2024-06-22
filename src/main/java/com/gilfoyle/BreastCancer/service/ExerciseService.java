@@ -34,21 +34,6 @@ public class ExerciseService {
         return exerciseRepository.save(newExercise);
     }
 
-    public void deleteExercise(Long id) {
-        exerciseRepository.deleteById(id);
-    }
-
-    public Exercise updateExercise(ExerciseRequestDto exercise, Long id) {
-        Exercise fExercise= exerciseRepository.findById(id).orElseThrow(() -> new RuntimeException("Exercise not found"));
-        fExercise.setExerciseName(exercise.getExerciseName());
-        fExercise.setExerciseName(exercise.getExerciseName());
-        fExercise.setExerciseDate(exercise.getExerciseDate());
-        fExercise.setDoneExercise(exercise.isDoneExercise());
-
-        return exerciseRepository.save(fExercise);
-    }
-
-
     public void saveExercise(Exercise exercise) {
         exerciseRepository.save((exercise));
     }

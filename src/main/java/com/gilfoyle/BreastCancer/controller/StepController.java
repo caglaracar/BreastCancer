@@ -13,7 +13,7 @@ import java.util.List;
 @RequiredArgsConstructor
 @RequestMapping("/api/step")
 @CrossOrigin
-public class StepController {
+public class StepController  {
     private final StepService stepService;
 
     @PostMapping("/get")
