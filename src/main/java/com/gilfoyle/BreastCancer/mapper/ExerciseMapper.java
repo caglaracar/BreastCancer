@@ -11,6 +11,7 @@ public class ExerciseMapper {
         exercise.setExerciseDate(exerciseRequestDto.getExerciseDate());
         exercise.setDoneExercise(exerciseRequestDto.isDoneExercise());
         exercise.setCalories(exerciseRequestDto.getCalories());
+        exercise.setDifficultyLevel(exerciseRequestDto.getDifficultyLevel());
         return exercise;
     }
 

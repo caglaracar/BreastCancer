@@ -27,6 +27,7 @@ public class Exercise {
     private List<Step> step;
     private String exerciseName;
     private String calories;
+    private String difficultyLevel;
 
 
 

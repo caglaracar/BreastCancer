@@ -11,4 +11,5 @@ public class ExerciseRequestDto {
     private Date ExerciseDate;
     private boolean isDoneExercise;
     private String calories;
+    private String difficultyLevel;
 }
