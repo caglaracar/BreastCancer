@@ -37,4 +37,20 @@ public class ExerciseService {
     public void saveExercise(Exercise exercise) {
         exerciseRepository.save((exercise));
     }
+
+    public Exercise updateExercise(ExerciseRequestDto exercise, User user, Long id) {
+        Exercise fExercise = exerciseRepository.findById(id).orElse(null);
+        if (fExercise == null) {
+            return null;
+        }
+
+        fExercise.setExerciseName(exercise.getExerciseName());
+        fExercise.setExerciseDate(exercise.getExerciseDate());
+        fExercise.setDoneExercise(exercise.isDoneExercise());
+        fExercise.setCalories(exercise.getCalories());
+        fExercise.setDifficultyLevel(exercise.getDifficultyLevel());
+        fExercise.setUser(user);
+
+        return exerciseRepository.save(fExercise);
+    }
 }

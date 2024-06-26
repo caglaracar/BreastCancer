@@ -40,4 +40,18 @@ public class ExerciseController{
         }
     }
 
+    @PutMapping("/update/{exerciseId}")
+    public ResponseEntity<?> updateExercise(@RequestBody ExerciseRequestDto exercise, @PathVariable Long exerciseId) {
+        System.err.println("exercise: " + exercise + " id: " + exerciseId);
+        try {
+            User user = userService.getUser(SecurityUtil.getUserId());
+            Exercise updatedExercise = exerciseService.updateExercise(exercise, user, exerciseId);
+            return ResponseEntity.ok(updatedExercise);
+        } catch (UsernameNotFoundException e) {
+            System.err.println("exercise: " + exercise + " id: " + exerciseId);
+
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+        }
+    }
+
 }
