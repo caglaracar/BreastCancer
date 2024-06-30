@@ -2,9 +2,9 @@ spring:
   application:
     name: breast-cancer-prediction
   datasource:
-    url: jdbc:postgresql://db-postgresql-fra1-70206-do-user-13769189-0.c.db.ondigitalocean.com:25060/defaultdb
-    username: doadmin
-    password: AVNS_zijkeeAfeb4nvCFCc0b
+    url: jdbc:postgresql://postgres:5432/mydatabase # Bu adres ve port, Docker Compose'da belirlediğiniz PostgreSQL service adı ve default PostgreSQL portu.
+    username: myuser                                # Docker Compose'da belirlediğiniz kullanıcı adı.
+    password: mypassword                             # Docker Compose'da belirlediğiniz parola.
     driver-class-name: org.postgresql.Driver
   jpa:
     generate-ddl: true
