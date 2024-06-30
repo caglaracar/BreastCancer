@@ -22,7 +22,7 @@ services:
       SPRING_DATASOURCE_PASSWORD: mypassword
       JWT_SECRET: secret
     ports:
-      - "8080:8080"
+      - "443:443"
     depends_on:
       - postgres
 
