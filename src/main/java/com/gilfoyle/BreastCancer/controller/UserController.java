@@ -35,8 +35,8 @@ public class UserController extends GeneralController {
     }
 
     @PutMapping("/update")
-    public User updateUser(@RequestBody UserRequestDto user) {
-        return userService.updateUser(user,getUser());
+    public User updateUser(@RequestBody UserRequestDto user, User fUser) {
+        return userService.updateUser(user,fUser);
     }
 
     @PostMapping("/login")

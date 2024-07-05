@@ -7,6 +7,6 @@ RUN mvn clean install -DskipTests -Pprod
 # Run spring boot in Docker
 FROM openjdk:17
 COPY --from=build /opt/app/target/*.jar app.jar
-ENV PORT 8080
+ENV PORT 443
 EXPOSE $PORT
-ENTRYPOINT ["java","-jar","-Xmx1024M","-Dspring.profiles.active=prod","-Dserver.port=${PORT}","app.jar"]
+ENTRYPOINT ["java","-Dspring.profiles.active=prod","-Dserver.port=${PORT}","-Xmx1024M","-jar","app.jar"]
