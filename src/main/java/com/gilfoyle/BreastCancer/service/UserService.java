@@ -40,16 +40,21 @@ public class UserService {
         userRepository.delete(user);
     }
 
-    public User updateUser(UserRequestDto user, User fUser) {
-        fUser.setAge(user.getAge());
-        fUser.setEmail(user.getEmail());
-        fUser.setName(user.getName());
-        fUser.setSurname(user.getSurname());
-        fUser.setWeight(user.getWeight());
-        fUser.setHeight(user.getHeight());
-        fUser.setGeneralAnlysisRegion(user.getGeneralAnlysisRegion());
+    public User updateUser(Long userId, UserRequestDto userDto) throws Exception {
+        User existingUser = userRepository.findById(userId)
+                .orElseThrow(() -> new Exception("User not found with id: " + userId));
 
-        return userRepository.save(fUser);
+        // Kullanıcı bilgilerini güncelle
+        existingUser.setName(userDto.getName());
+        existingUser.setSurname(userDto.getSurname());
+        existingUser.setEmail(userDto.getEmail());
+        existingUser.setAge(userDto.getAge());
+        existingUser.setWeight(userDto.getWeight());
+        existingUser.setHeight(userDto.getHeight());
+        existingUser.setGeneralAnlysisRegion(userDto.getGeneralAnlysisRegion());
+
+        // Güncellenmiş kullanıcıyı kaydet
+        return userRepository.save(existingUser);
     }
 
     public LoginResponse login(LoginRequest loginRequest){
