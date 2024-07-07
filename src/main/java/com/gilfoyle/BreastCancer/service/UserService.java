@@ -51,7 +51,7 @@ public class UserService {
         existingUser.setAge(userDto.getAge());
         existingUser.setWeight(userDto.getWeight());
         existingUser.setHeight(userDto.getHeight());
-        existingUser.setGeneralAnlysisRegion(userDto.getGeneralAnlysisRegion());
+        existingUser.setgeneralAnalysisRegion(userDto.getgeneralAnalysisRegion());
 
         // Güncellenmiş kullanıcıyı kaydet
         return userRepository.save(existingUser);

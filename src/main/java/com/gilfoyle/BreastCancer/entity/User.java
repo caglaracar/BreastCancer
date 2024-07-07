@@ -22,7 +22,7 @@ public class User {
     private String age;
     private Long weight;
     private Long height;
-    private String generalAnlysisRegion;
+    private String generalAnalysisRegion;
 
     @OneToMany(mappedBy = "user")
     private List<Exercise> exercise;
@@ -86,12 +86,12 @@ public class User {
         this.height = height;
     }
 
-    public String getGeneralAnlysisRegion() {
-        return generalAnlysisRegion;
+    public String getgeneralAnalysisRegion() {
+        return generalAnalysisRegion;
     }
 
-    public void setGeneralAnlysisRegion(String generalAnlysisRegion) {
-        this.generalAnlysisRegion = generalAnlysisRegion;
+    public void setgeneralAnalysisRegion(String generalAnalysisRegion) {
+        this.generalAnalysisRegion = generalAnalysisRegion;
     }
 
     public List<Exercise> getExercise() {

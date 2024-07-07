@@ -11,7 +11,7 @@ public class UserMapper {
         user.setName(userRequestDto.getName());
         user.setSurname(userRequestDto.getSurname());
         user.setEmail(userRequestDto.getEmail());
-        user.setGeneralAnlysisRegion(userRequestDto.getGeneralAnlysisRegion());
+        user.setgeneralAnalysisRegion(userRequestDto.getgeneralAnalysisRegion());
         return user;
     }
 

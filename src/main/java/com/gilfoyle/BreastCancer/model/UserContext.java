@@ -35,7 +35,7 @@ public class UserContext {
         this.age = user.getAge();
         this.weight = user.getWeight();
         this.height = user.getHeight();
-        this.generalAnalysisRegion = user.getGeneralAnlysisRegion();
+        this.generalAnalysisRegion = user.getgeneralAnalysisRegion();
         this.securityUser = user.getSecurityUser();
     }
 

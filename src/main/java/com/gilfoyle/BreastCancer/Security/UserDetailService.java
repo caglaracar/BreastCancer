@@ -76,7 +76,7 @@ public class UserDetailService implements UserDetailsService {
         user.setAge(saveUserRequestDto.age());
         user.setWeight(saveUserRequestDto.weight());
         user.setHeight(saveUserRequestDto.height());
-        user.setGeneralAnlysisRegion(saveUserRequestDto.generalAnlysisRegion());
+        user.setgeneralAnalysisRegion(saveUserRequestDto.generalAnalysisRegion());
         return user;
     }
 

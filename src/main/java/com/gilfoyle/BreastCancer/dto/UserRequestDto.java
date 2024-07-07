@@ -8,7 +8,7 @@ public class UserRequestDto {
     private String surname;
     private String password;
     private String email;
-    private String generalAnlysisRegion;
+    private String generalAnalysisRegion;
     private String age;
     private Long weight;
     private Long height;
@@ -45,12 +45,12 @@ public class UserRequestDto {
         this.email = email;
     }
 
-    public String getGeneralAnlysisRegion() {
-        return generalAnlysisRegion;
+    public String getgeneralAnalysisRegion() {
+        return generalAnalysisRegion;
     }
 
-    public void setGeneralAnlysisRegion(String generalAnlysisRegion) {
-        this.generalAnlysisRegion = generalAnlysisRegion;
+    public void setgeneralAnalysisRegion(String generalAnalysisRegion) {
+        this.generalAnalysisRegion = generalAnalysisRegion;
     }
 
     public String getAge() {
