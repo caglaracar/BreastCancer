@@ -28,6 +28,7 @@ public class Exercise {
     private String exerciseName;
     private String calories;
     private String difficultyLevel;
+    private String testResult;
 
 
 

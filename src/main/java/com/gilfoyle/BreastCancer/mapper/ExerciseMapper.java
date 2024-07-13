@@ -12,6 +12,7 @@ public class ExerciseMapper {
         exercise.setDoneExercise(exerciseRequestDto.isDoneExercise());
         exercise.setCalories(exerciseRequestDto.getCalories());
         exercise.setDifficultyLevel(exerciseRequestDto.getDifficultyLevel());
+        exercise.setTestResult(exerciseRequestDto.getTestResult());
         return exercise;
     }
 

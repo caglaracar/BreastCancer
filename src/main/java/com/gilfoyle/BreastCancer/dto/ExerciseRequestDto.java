@@ -12,4 +12,5 @@ public class ExerciseRequestDto {
     private boolean isDoneExercise;
     private String calories;
     private String difficultyLevel;
+    private String testResult;
 }

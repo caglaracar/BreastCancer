@@ -49,6 +49,7 @@ public class ExerciseService {
         fExercise.setDoneExercise(exercise.isDoneExercise());
         fExercise.setCalories(exercise.getCalories());
         fExercise.setDifficultyLevel(exercise.getDifficultyLevel());
+        fExercise.setTestResult(exercise.getTestResult());
         fExercise.setUser(user);
 
         return exerciseRepository.save(fExercise);
